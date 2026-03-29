@@ -1,0 +1,102 @@
+DATA DISCLAIMER
+
+1. IMPORTANT
+
+Thank you for downloading data from the International Council for the Exploration of the Sea (ICES). 
+By downloading data from the ICES website and sub-domains [ices.dk] you are agreeing to the terms and conditions of use as described in this document and any documents referred to in this text.
+Please read this before using the downloaded data, as this file contains specific information about the use of the data provided, limitations, and known issues. This file contains contact information regarding the origins of the data (where supplied) as well as how to cite these data in a publication or a data product.  
+This file is the counterpart to the data download with the name: 
+ContaminantsSeawater_2026031810085210.csv, requested from ICES DOME (https://dome.ices.dk) on 18-03-2026 10:10:13. 
+
+2. CONTACT INFORMATION
+
+For feedback or queries about this data download, contact ICES at:
+Email: accessions@ices.dk
+Tel.:	+45 3338 6700
+Find more information at:
+Web:	https://www.ices.dk/data/Pages/default.aspx
+
+3. DATA SPECIFIC INFORMATION
+
+DOME is the marine environment data portal used by OSPAR, HELCOM, AMAP and Expert Groups in the management of chemical and biological data for regional marine assessments. 
+For more information about the dataset, see section 7. 
+
+DOME Browse (https://dome.ices.dk/browse/) provides users with access to the complete original data files, as uploaded to DOME. 
+Download ZIP bundle includes the requested data file in the CSV format, and the data disclaimer. Data file structure follows the Environmental Reporting Format 3.2 (https://datsu.ices.dk/web/selRep.aspx), with all record types included in one file, where rows are used as record separators, commas - as field separators, and points - as decimal separators.
+Status of data submissions can be checked at:
+https://ices.dk/data/tools/Pages/Submission%20status.aspx
+Data uploaded to DOME undergoes quality control procedures by the national submitters and by ICES Data Screening Utility (DATSU). However, as data requirements change over time, there could be inconsistencies in the way data are reported and can be interpreted. If in doubt about the data validity or quality – contact accessions@ices.dk.
+
+DOME Views (https://dome.ices.dk/views/index.aspx) provides users with data from the Marine Environment Database for contaminants in biota, in sediment, in seawater, as well as fish diseases and phytoplankton community data. Users are able to narrow down the selection by year range, purpose of monitoring, country, monitoring programme, parameter group, reporting laboratory, analytical laboratory, and/or geographical area.
+Download ZIP bundle includes the requested data file in the CSV format, a PDF document describing the data output fields, and the data disclaimer. Data file structure is flat, with rows used as record separators, commas as field separators, and points as decimal separators.
+
+DOME XHAT web-services (https://dome.ices.dk/api/XHAT/...) are designed to serve input data to the Hazardous Substances Assessment Tools for AMAP, HELCOM and OSPAR.
+Download ZIP bundle includes the requested data as a tab separated text file and the data disclaimer. Data file structure is flat, with rows used as record separators, tab as field separators, and points as decimal separators.
+Please note that for data downloaded through the DOME ICES XHAT API, fish disease data (gross diseases - B-GRS and histopathology - B-HST) is not included with the biological data, they can be found in the ICES Data Portal (https://data.ices.dk) or DOME views (https://dome.ices.dk/views).
+
+4. TERMS OF USE: DATA 
+
+ICES makes data available to users in an open, timely and easy way, but ICES remains dependent on data contributions.
+Data provided from the website are classified as 'Public'.
+Public data are covered by the Creative Commons (CC BY 4.0) open access data license. 
+ https://creativecommons.org/licenses/by/4.0 
+Please note:
+- All data products are by default publicly available, including those derived from restricted data.
+- Correct and appropriate data interpretation is solely the responsibility of data users.
+- Data Users must not expressly or otherwise imply ICES substantiation or endorsement of their work, results, conclusions and/or recommendations.
+- Data sources must be duly acknowledged.
+- Data Users must respect any and all restrictions on the use or reproduction of data such as restrictions on use for commercial purposes.
+- Data Users are obliged to inform ICES of any suspected problems in the data.
+- Data Users are encouraged to inform ICES of possible sources of other relevant data.
+The full ICES data policy and terms of use can be viewed at:
+https://ices.dk/data/guidelines-and-policy/pages/ices-data-policy.aspx.
+Data held at ICES are used for various assessments and working group purposes. The data guidelines and procedures for these can be viewed at:
+https://ices.dk/data/guidelines-and-policy/pages/default.aspx
+
+5. TERMS OF USE: SOFTWARE 
+
+Software is available for use from the ICES website that is provided as an aid for data users to work with, analyse and convert data: 
+https://ices.dk/data/tools/Pages/Software.aspx
+The downloading and use of any software from https://www.ices.dk/ grants you only a limited, nonexclusive license for use solely by you for your own personal use and not for republication, distribution, assignment, sublicense, sale or other use. No part of any content, coding or documentation may be reproduced in any form or incorporated into any information retrieval system without the express permission of ICES or the third party that provided the software on https://www.ices.dk/
+The downloading and installation of software from https://www.ices.dk/ is at your own risk. ICES undertakes every effort to ensure software is compatible with the latest windows operating system, or other systems as defined in specific readme or a software documentation file. ICES accepts no responsibility for the correct functioning and operation of software downloaded from https://www.ices.dk/, nor any incidental, special or consequential damages associated with downloading and installing software provided by ICES.
+
+6. DATA CITATION
+
+Data sources should be acknowledged by a citation. Detailed information and examples of citations can be found in ICES Data Policy: https://ices.dk/data/guidelines-and-policy/Pages/ICES-data-policy.aspx.
+A minimum requirement citation would include the following:
+“ICES Marine Environmental Database (DOME), Contaminants in Seawater. YEAR. ICES, Copenhagen, Denmark. https://dome.ices.dk”  
+Please acknowledge the following data sources when using the data:
+
+-Estonian Environment Agency, Keskkonnaagentuur, Tallinn, Estonia 
+ -Finnish Environment Institute, Helsinki, Finland 
+ -National Institute for Coastal and Marine Manageme, The Hague, The Netherlands 
+ -Bundesamt für Seeschiffahrt und Hydrographie, Hamburg, Germany 
+ -Management Unit of the North Sea and Scheldt Estuary, Mathematical Models, Brussels, Belgium 
+ -Regional Inspectorate of Environmental Protection in Olsztyn, Olsztyn, Poland 
+ -Alfred-Wegener Institut, Institut für Polarforschung, Bremerhaven, Germany 
+ -Finnish Environment Institute, Laboratory, Helsinki, Finland 
+ -Norwegian Institute for Water Research, Oslo, Norway 
+ -Regional Inspectorate of Environmental Protection in Gdansk, Gdansk, Poland 
+ -Rijkswaterstaat,  Monitoring en Laboratorium, Lelystad, The Netherlands 
+ -State Agency for Agriculture, Environment and Rural Areas Schleswig-Holstein
+Schleswig-Holstein, Schleswig-Holstein, Flintbek, Germany 
+ -Instituto Español de Oceanografia, C. O. Vigo, Canido-Cabo Estay, Vigo, Spain 
+ -Irish Marine Institute, Fisheries Research Centre, Abbotstown Laboratory Complex, Dublin 15, Ireland 
+ -British Oceanographic Data Centre, Joseph Proudman Building, Liverpool, United Kingdom 
+ -Regional Inspectorate of Environmental Protection in Szczecinie, Szczecin, Poland 
+ -Bundesanstalt für Gewässerkunde, Federal Institute of Hydrology, Koblenz, Germany 
+ -IFREMER, Centre de Brest, Plouzané, France 
+ -Landesamt für Umwelt, Naturschutz und Geologie in Mecklenburg-Vorpommern, Mecklenburg-Vorpommern, Güstrow, Germany 
+ -Regional Center "Monitoring of the Arctic" of Roshydromet, Laboratory of Analytical Chemistry, St. Petersburg, Russia 
+ -Instituto Español de Oceanografia, Madrid, Madrid, Spain 
+ -Environmental Protection Agency, Department of Marine Research, Klaipeda, Lithuania 
+ -Institute of Meteorology and Water Management, Department of Oceanography and Baltic Monitoring, Gdynia, Poland 
+ -Regional Inspectorate of Environmental Protection in Olsztyn - Branch Office in Elblag, Elblag, Poland 
+  
+7. METADATA
+
+Further details about the dataset and related services can be found at the metadata catalogue.
+ICES Datasets: https://gis.ices.dk/geonetwork/srv/eng/catalog.search#/search?query_string={"groupOwner":{"10":true},"resourceType":{"dataset":true}}
+ICES Services: https://gis.ices.dk/geonetwork/srv/eng/catalog.search#/search?query_string={"groupOwner":{"10":true},"resourceType":{"service":true}}
+Contaminants: https://gis.ices.dk/geonetwork/srv/eng/catalog.search#/metadata/a5058fef-19fb-4ce9-8552-1b74e9199b9d
+Biological community: https://gis.ices.dk/geonetwork/srv/eng/catalog.search#/metadata/33fa648d-c4d6-4449-ac3c-dbec0f204e1d
