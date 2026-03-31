@@ -1,10 +1,12 @@
 {
-  "n_rows_after_filtering": 720,
+  "n_rows_after_filtering": 417,
   "season_months": [
-    2
+    4
   ],
   "block_size_km": 50.0,
   "include_latlon": true,
+  "include_year": false,
+  "aggregate_same_day": true,
   "n_linear_features": 12,
   "linear_features": [
     "s3_CHL_OC4ME_mean",
@@ -13,7 +15,7 @@
     "s3_KD490_M07_mean",
     "s3_ADG443_NN_mean",
     "s3_B06_mean",
-    "s3_B08_mean",
+    "s3_B11_mean",
     "valid_pixel_count",
     "sat_time_diff_hours",
     "doy_sin",

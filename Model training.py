@@ -53,6 +53,7 @@ LINEAR_REDUCED_FEATURE_CANDIDATES = [
     "year",
 ]
 
+
 def rmse(y_true, y_pred) -> float:
     return float(np.sqrt(mean_squared_error(y_true, y_pred)))
 
@@ -99,6 +100,56 @@ def filter_training_rows(df: pd.DataFrame, season_months: List[int] | None = Non
         out = out[out["month"].isin(season_months)]
 
     return out.reset_index(drop=True)
+
+
+def first_non_null(series: pd.Series):
+    non_null = series.dropna()
+    if len(non_null) == 0:
+        return np.nan
+    return non_null.iloc[0]
+
+
+def aggregate_same_day_buoy_rows(df: pd.DataFrame) -> pd.DataFrame:
+    if "STATN" not in df.columns:
+        raise ValueError("Column 'STATN' is required for --aggregate-same-day.")
+    if "DATE" not in df.columns:
+        raise ValueError("Column 'DATE' is required for --aggregate-same-day.")
+
+    work = df.copy()
+    work["DATE"] = pd.to_datetime(work["DATE"], errors="coerce")
+    work = work[work["DATE"].notna()].copy()
+    work["__date_day"] = work["DATE"].dt.floor("D")
+
+    numeric_cols = work.select_dtypes(include=[np.number, "bool"]).columns.tolist()
+    numeric_cols = [c for c in numeric_cols if c != "MYEAR"]
+
+    agg_map = {}
+    for c in work.columns:
+        if c in {"STATN", "__date_day", "DATE"}:
+            continue
+        if c in numeric_cols:
+            agg_map[c] = "median"
+        else:
+            agg_map[c] = first_non_null
+
+    grouped = (
+        work.groupby(["STATN", "__date_day"], dropna=False, as_index=False)
+        .agg(agg_map)
+        .rename(columns={"__date_day": "DATE"})
+    )
+
+    grouped["DATE"] = pd.to_datetime(grouped["DATE"], errors="coerce")
+    grouped["year"] = grouped["DATE"].dt.year
+    grouped["month"] = grouped["DATE"].dt.month
+    grouped["dayofyear"] = grouped["DATE"].dt.dayofyear
+
+    if "has_any_numeric_value" in grouped.columns:
+        grouped["has_any_numeric_value"] = grouped["has_any_numeric_value"].fillna(0).astype(int).astype(bool)
+
+    if "DATE" in grouped.columns:
+        grouped = grouped.sort_values(["DATE", "STATN"]).reset_index(drop=True)
+
+    return grouped
 
 
 def drop_constant_numeric_columns(df: pd.DataFrame, cols: List[str]) -> List[str]:
@@ -203,6 +254,7 @@ def select_linear_predictor_columns(
     cols = drop_highly_correlated_features(df, cols, threshold=0.95)
     return cols
 
+
 def build_linear_model() -> Pipeline:
     return Pipeline([
         ("imputer", SimpleImputer(strategy="median")),
@@ -243,6 +295,7 @@ def build_xgb_model() -> Pipeline:
         ))
     ])
 
+
 def compute_smearing_factor(y_log_true: np.ndarray, y_log_pred: np.ndarray) -> float:
     resid = y_log_true - y_log_pred
     smear = float(np.mean(np.exp(resid)))
@@ -255,6 +308,7 @@ def backtransform_with_smearing(pred_log: np.ndarray, smear_factor: float) -> np
     pred_raw = np.exp(pred_log) * smear_factor - 1.0
     pred_raw = np.clip(pred_raw, 0, None)
     return pred_raw
+
 
 def evaluate_fold(y_true_raw: np.ndarray, y_pred_raw: np.ndarray) -> Dict[str, float]:
     rmse_val = rmse(y_true_raw, y_pred_raw)
@@ -465,12 +519,22 @@ def main():
         action="store_true",
         help="Include Latitude and Longitude as predictors."
     )
+    ap.add_argument(
+        "--aggregate-same-day",
+        action="store_true",
+        help="Aggregate same-day buoy measurements per STATN to one row using median."
+    )
     args = ap.parse_args()
 
     outdir = Path(args.outdir)
     outdir.mkdir(parents=True, exist_ok=True)
 
     df = pd.read_csv(args.csv)
+    df["DATE"] = pd.to_datetime(df["DATE"], errors="coerce")
+
+    if args.aggregate_same_day:
+        df = aggregate_same_day_buoy_rows(df)
+
     df = add_cyclic_time_features(df)
     df = filter_training_rows(df, season_months=args.season_months)
 
@@ -519,6 +583,8 @@ def main():
         "season_months": args.season_months,
         "block_size_km": args.block_size_km,
         "include_latlon": bool(args.include_latlon),
+        "include_year": bool(args.include_year),
+        "aggregate_same_day": bool(args.aggregate_same_day),
         "n_linear_features": len(linear_feature_cols),
         "linear_features": linear_feature_cols,
         "n_tree_features": len(tree_feature_cols),
@@ -534,6 +600,7 @@ def main():
     print(f"Linear features: {len(linear_feature_cols)}")
     print(f"Tree features: {len(tree_feature_cols)}")
     print(f"Include lat/lon: {args.include_latlon}")
+    print(f"Aggregate same day: {args.aggregate_same_day}")
     print("Models trained: linear_multiple_regression, random_forest, xgboost")
     print("Validation run: spatial_cv_only")
     print("Calibration: duan_smearing_on_log1p_backtransform")
