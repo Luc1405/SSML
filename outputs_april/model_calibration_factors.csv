@@ -1,0 +1,4 @@
+model,smear_factor
+linear,1.2979912597472076
+random_forest,1.0718699560891398
+xgboost,1.010949459155034

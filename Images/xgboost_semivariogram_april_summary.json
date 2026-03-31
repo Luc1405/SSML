@@ -1,0 +1,13 @@
+{
+  "input_csv": "outputs_april/cv_predictions_xgboost.csv",
+  "prediction_column": "xgboost_pred",
+  "rows_used": 537,
+  "n_lags": 15,
+  "max_dist_km": null,
+  "sample_pairs": 200000,
+  "outputs": {
+    "csv": "Images\\xgboost_semivariogram_april.csv",
+    "png": "Images\\xgboost_semivariogram_april.png",
+    "summary": "Images\\xgboost_semivariogram_april_summary.json"
+  }
+}
