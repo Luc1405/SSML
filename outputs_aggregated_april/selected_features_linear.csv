@@ -1,13 +1,5 @@
 feature
-s3_CHL_OC4ME_mean
-s3_CHL_NN_mean
-s3_TSM_NN_mean
-s3_KD490_M07_mean
-s3_ADG443_NN_mean
+s3_B03_mean
 s3_B06_mean
 s3_B11_mean
-valid_pixel_count
-sat_time_diff_hours
-doy_sin
-Latitude
-Longitude
+s3_B17_mean

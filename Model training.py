@@ -17,6 +17,42 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from xgboost import XGBRegressor
 
+# TARGET_COL = "Value"
+
+# NON_PREDICTOR_COLS = [
+#     "Country", "STATN", "MYEAR", "DATE", "DEPHU", "DEPHL", "MATRX", "PARGROUP",
+#     "PARAM", "BASIS", "QFLAG", "MUNIT", "VFLAG", "tblAnalysisID", "tblParamID",
+#     "tblSampleID", "sample_depth_m",
+#     "Value",
+#     "sat_interval_from", "sat_interval_to", "sat_interval_mid_utc",
+#     "query_error", "query_status", "s3_chunk_name", "s3_mosaicking_order", "sat_time_diff_hours",
+# ]
+
+# PREFERRED_SENTINEL_PREFIXES = [
+#     "s3_"
+# ]
+
+# OPTIONAL_FEATURE_COLS = [
+#     "valid_pixel_count",
+# ]
+
+# LINEAR_REDUCED_FEATURE_CANDIDATES = [
+#     "s3_CHL_OC4ME_mean",
+#     "s3_CHL_NN_mean",
+#     "s3_TSM_NN_mean",
+#     "s3_KD490_M07_mean",
+#     "s3_ADG443_NN_mean",
+#     "s3_B06_mean",
+#     "s3_B07_mean",
+#     "s3_B08_mean",
+#     "s3_B11_mean",
+#     "valid_pixel_count",
+#     "sat_time_diff_hours",
+#     "doy_sin",
+#     "doy_cos",
+#     "year",
+# ]
+
 TARGET_COL = "Value"
 
 NON_PREDICTOR_COLS = [
@@ -26,6 +62,16 @@ NON_PREDICTOR_COLS = [
     "Value",
     "sat_interval_from", "sat_interval_to", "sat_interval_mid_utc",
     "query_error", "query_status", "s3_chunk_name", "s3_mosaicking_order", "sat_time_diff_hours",
+    "valid_pixel_count",
+    "sat_time_diff_hours",
+    "doy_sin",
+    "doy_cos",
+    "s3_CHL_OC4ME_mean","s3_CHL_OC4ME_min","s3_CHL_OC4ME_max","s3_CHL_OC4ME_stDev",
+    "s3_CHL_NN_mean","s3_CHL_NN_min","s3_CHL_NN_max","s3_CHL_NN_stDev",
+    "s3_TSM_NN_max","s3_TSM_NN_mean","s3_TSM_NN_min","s3_TSM_NN_stDev",
+    "s3_KD490_M07_max","s3_KD490_M07_mean","s3_KD490_M07_min","s3_KD490_M07_stDev",
+    "s3_ADG443_NN_min","s3_ADG443_NN_mean","s3_ADG443_NN_max","s3_ADG443_NN_stDev",
+    "year",
 ]
 
 PREFERRED_SENTINEL_PREFIXES = [
@@ -33,24 +79,22 @@ PREFERRED_SENTINEL_PREFIXES = [
 ]
 
 OPTIONAL_FEATURE_COLS = [
-    "valid_pixel_count",
 ]
 
 LINEAR_REDUCED_FEATURE_CANDIDATES = [
-    "s3_CHL_OC4ME_mean",
-    "s3_CHL_NN_mean",
-    "s3_TSM_NN_mean",
-    "s3_KD490_M07_mean",
-    "s3_ADG443_NN_mean",
+    # "s3_CHL_OC4ME_mean",
+    # "s3_CHL_NN_mean",
+    # "s3_TSM_NN_mean",
+    # "s3_KD490_M07_mean",
+    # "s3_ADG443_NN_mean",
+    "s3_B03_mean",
+    "s3_B04_mean",
     "s3_B06_mean",
     "s3_B07_mean",
     "s3_B08_mean",
+    "s3_B10_mean",
     "s3_B11_mean",
-    "valid_pixel_count",
-    "sat_time_diff_hours",
-    "doy_sin",
-    "doy_cos",
-    "year",
+    "s3_B17_mean",
 ]
 
 
@@ -191,7 +235,7 @@ def select_tree_predictor_columns(
     include_year: bool = False,
     include_month: bool = False,
     include_dayofyear_raw: bool = False,
-    include_latlon: bool = False,
+    include_latlon: bool = False
 ) -> List[str]:
     cols = []
 
@@ -210,9 +254,9 @@ def select_tree_predictor_columns(
         if c in df.columns and c not in cols:
             cols.append(c)
 
-    for c in ["doy_sin", "doy_cos"]:
-        if c in df.columns and c not in cols:
-            cols.append(c)
+    # for c in ["doy_sin", "doy_cos"]:
+    #     if c in df.columns and c not in cols:
+    #         cols.append(c)
 
     if include_year and "year" in df.columns:
         cols.append("year")
@@ -548,7 +592,7 @@ def main():
         include_year=args.include_year,
         include_month=args.include_month,
         include_dayofyear_raw=args.include_dayofyear_raw,
-        include_latlon=args.include_latlon,
+        include_latlon=args.include_latlon
     )
 
     if len(linear_feature_cols) == 0:
